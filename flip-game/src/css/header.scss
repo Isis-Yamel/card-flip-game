@@ -1,0 +1,17 @@
+.header__layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    &--counter {
+        justify-self: end;
+    }
+}
+
+.header__button {
+    background-color: #9fdd5a;
+    border-radius: 6px;
+    border: none;
+    color: black;
+    height: 30px;
+    width: 20%;
+}
