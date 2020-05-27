@@ -1,6 +1,6 @@
 import anchor from '../assets/anchor.png';
 
-export const cards = [
+export default [
     {
         id: 1,
         image: {anchor},
@@ -31,4 +31,4 @@ export const cards = [
         image: {anchor},
         matchId: '1f',
     }
-]
+];

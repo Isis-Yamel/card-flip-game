@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/types';
-import * as cards from '../utils/cardsData';
+import cards from '../utils/cardsData';
 
 const initialState = {
     cards
@@ -8,13 +8,6 @@ const initialState = {
 // const randomCardsOrder = () => {
 //     let cards
 //     return getCards.cards.map();
-// };
-
-// const cardsGame = (state) => {
-//     return {
-//         ...state.cards,
-//         cards: randomCardsOrder
-//     };
 // };
 
 const reducer = (state = initialState, action) => {

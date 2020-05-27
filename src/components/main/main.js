@@ -20,18 +20,12 @@ class Main extends Component {
         })
     };
 
-    mapStateProps = state => {
-        return {
-            data: state.cards
-        };
-    };
-
     render () {
         return (
             <main className='main__layout'>
                 <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="vertical">
                     <div>
-                        <button className='card__front' onClick={this.handleClick}>{this.data.cards.image}</button>
+        <button className='card__front' onClick={this.handleClick}>4</button>
                     </div>
                     <div>
                         <button className='card__back' onClick={this.handleClick}></button>
@@ -42,5 +36,11 @@ class Main extends Component {
 
     }
 }
+
+const mapStateProps = state => {
+    return {
+        data: state.cards
+    };
+};
 
 export default connect(mapStateProps, null)(Main);

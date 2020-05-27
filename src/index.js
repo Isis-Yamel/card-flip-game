@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './containers/App';
-import * as serviceWorker from './serviceWorker';
 
 import reducer from './store/reducer/reducer';
 import thunk from 'redux-thunk';
@@ -18,5 +17,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
-
-serviceWorker.register();
