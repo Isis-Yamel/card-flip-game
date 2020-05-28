@@ -1,8 +1,8 @@
 import * as actionTypes from './types';
 
-export const getCard = () => {
+export const flipCard = (id) => {
     return ({
-        type: actionTypes.GET_CARD
-
+        data: id,
+        type: actionTypes.FLIP_CARD
     })
 };

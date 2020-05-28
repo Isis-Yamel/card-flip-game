@@ -1,18 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import ReactCardFlip from 'react-card-flip';
+import { flipCard } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 import '../../css/main.scss';
 
-class Main extends Component {
-
-    state = {
-        isFlipped: false
-    };
-
-    handleClick = (e) => {
-        e.preventDefault();
-        this.setState(prevState => ({ isFlipped: !prevState.isFlipped}))
-    };
+class Main extends PureComponent {
 
     handleRestartButton = () => {
         this.setState({
@@ -20,17 +12,30 @@ class Main extends Component {
         })
     };
 
+    renderCards = () => {
+        return (
+            <Fragment>
+                {this.props.data.map((item, index) => (
+                    <ReactCardFlip isFlipped={item.isFlipped} flipDirection="vertical" key={index}>
+                        <div>
+                            <button className=' card card__front' onClick={(id) => this.props.flipCard(item.id)}>
+                            </button>
+                        </div>
+                        <div>
+                            <button className=' card card__back' onClick={(id) => this.props.flipCard(item.id)}>
+                                <i className={item.image}></i>
+                            </button>
+                        </div>
+                    </ReactCardFlip>
+                ))}
+            </Fragment>
+        )
+    }
+
     render () {
         return (
             <main className='main__layout'>
-                <ReactCardFlip isFlipped={this.state.isFlipped} flipDirection="vertical">
-                    <div>
-        <button className='card__front' onClick={this.handleClick}>4</button>
-                    </div>
-                    <div>
-                        <button className='card__back' onClick={this.handleClick}></button>
-                    </div>
-                </ReactCardFlip>
+                {this.renderCards()}
             </main>
         );
 
@@ -43,4 +48,10 @@ const mapStateProps = state => {
     };
 };
 
-export default connect(mapStateProps, null)(Main);
+const mapDispatchToProps = dispatch => {
+    return {
+        flipCard: (id) => dispatch(flipCard(id)),
+    }
+};
+
+export default connect(mapStateProps, mapDispatchToProps)(Main);

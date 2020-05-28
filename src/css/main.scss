@@ -1,18 +1,26 @@
 .main__layout {
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     height: 60%;
+    justify-items: center;
     margin: 6%;
 }
 
 
 .card {
+    border: none;
+    height: 90px;
+    width: 90px;
+
     &__front {
         background-color: orange;
-        height: 90px;
-        width: 90px;
     }
     &__back {
         background-color: greenyellow;
-        height: 90px;
-        width: 90px;
     }
+}
+
+.fas {
+    font-size: 3em;
 }
