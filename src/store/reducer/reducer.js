@@ -6,6 +6,13 @@ const initialState = {
     currentFlipCards: 0
 };
 
+const shuffle = (state) => {
+    return {
+        ...state,
+        cards: state.cards.sort(() => Math.random() - 0.5)
+    };
+}
+
 const isCardFlipped = (state, id) => {
     state.currentFlipCards++
     checkCurrentCards(state);
@@ -21,16 +28,6 @@ const isCardFlipped = (state, id) => {
     };
 };
 
-const resetCards = (state) => {
-    return {
-        ...state.cards.map( card => {
-            card.isFlipped = false;
-
-            return card;
-        })
-    }
-};
-
 const checkCurrentCards = (state) => {
     console.log(state);
     if (state.currentFlipCards === 2) {
@@ -44,12 +41,24 @@ const checkCurrentCards = (state) => {
     }
 };
 
+const resetCards = (state) => {
+    return {
+        ...state.cards.map( card => {
+            card.isFlipped = false;
+
+            return card;
+        })
+    }
+};
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.GET_CARD:
             return state;
         case actionTypes.FLIP_CARD:
             return isCardFlipped({...state}, action.data);
+        case actionTypes.SHUFFLE_CARD:
+            return shuffle({...state});
         default:
             return state;
     };

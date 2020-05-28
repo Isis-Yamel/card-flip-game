@@ -1,10 +1,15 @@
 import React, { PureComponent, Fragment } from 'react';
 import ReactCardFlip from 'react-card-flip';
 import { flipCard } from '../../store/actions/actions';
+import { shuffleCards } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 import '../../css/main.scss';
 
 class Main extends PureComponent {
+
+    componentDidMount() {
+        this.props.shuffleCards();
+    }
 
     handleRestartButton = () => {
         this.setState({
@@ -51,6 +56,7 @@ const mapStateProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         flipCard: (id) => dispatch(flipCard(id)),
+        shuffleCards: () => dispatch(shuffleCards()),
     }
 };
 

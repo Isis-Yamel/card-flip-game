@@ -6,3 +6,9 @@ export const flipCard = (id) => {
         type: actionTypes.FLIP_CARD
     })
 };
+
+export const shuffleCards = () => {
+    return ({
+        type: actionTypes.SHUFFLE_CARD
+    })
+};
