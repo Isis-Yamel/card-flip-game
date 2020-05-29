@@ -3,15 +3,22 @@
     grid-template-columns: repeat(2, 1fr);
 
     &--counter {
+        align-self: center;
         justify-self: end;
     }
 }
 
-.header__button {
-    background-color: #9fdd5a;
-    border-radius: 6px;
-    border: none;
-    color: black;
-    height: 30px;
-    width: 20%;
+.header {
+    &__button {
+        background-color: #9fdd5a;
+        border-radius: 6px;
+        border: none;
+        color: black;
+        height: 30px;
+        width: 20%;
+    }
+
+    &__title {
+        font-size: 3em;
+    }
 }

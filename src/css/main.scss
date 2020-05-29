@@ -1,17 +1,19 @@
 .main__layout {
     align-items: center;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    height: 60%;
+    grid-template-columns: repeat(4, 1fr);
+    height: 70%;
     justify-items: center;
-    margin: 6%;
+    margin: 2% auto;
+    width: 60%;
 }
 
 
 .card {
     border: none;
-    height: 90px;
-    width: 90px;
+    border-radius: 4px;
+    height: 120px;
+    width: 120px;
 
     &__front {
         background-color: orange;
@@ -22,5 +24,5 @@
 }
 
 .fas {
-    font-size: 3em;
+    font-size: 4em;
 }

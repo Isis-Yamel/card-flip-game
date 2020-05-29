@@ -6,12 +6,9 @@ import '../css/App.scss';
 const App = () => {
     return (
     <div className='app__layout'>
-        <Header
-            // counter= {this.state.counter}
-            // restart= {this.handleRestartButton}
-        />
+        <Header/>
         <Main/>
-        <footer>
+        <footer className='footer__style'>
             <p>The true delight is in the finding out rather than in the knowing</p>
         </footer>
     </div>
