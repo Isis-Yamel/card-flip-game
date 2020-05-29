@@ -1,7 +1,7 @@
 class CardsGenerator {
     constructor(image) {
         this.isFlipped = false;
-        this.id = (Math.random() * 12 | 0) + 1;
+        this.id = Math.floor(Math.random() * 1000);
         this.image = image;
     }
 }
