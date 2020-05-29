@@ -1,10 +1,12 @@
 import * as actionTypes from '../actions/types';
-import cards from '../utils/cardsData';
+import { cardFactory } from '../utils/cardsFactory';
+import { cardImagesProps } from '../utils/imagesData';
 
 const initialState = {
-    cards,
-    currentFlipCards: 0
+    cards: cardFactory(cardImagesProps),
+    currentFlipCards: 0,
 };
+console.log(cardFactory(cardImagesProps));
 
 const shuffle = (state) => {
     return {

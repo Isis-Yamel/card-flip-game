@@ -11,12 +11,6 @@ class Main extends PureComponent {
         this.props.shuffleCards();
     }
 
-    handleRestartButton = () => {
-        this.setState({
-            counter: 0,
-        })
-    };
-
     renderCards = () => {
         return (
             <Fragment>
