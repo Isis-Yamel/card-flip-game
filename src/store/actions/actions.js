@@ -12,3 +12,9 @@ export const shuffleCards = () => {
         type: actionTypes.SHUFFLE_CARD
     })
 };
+
+export const handleBoard = () => {
+    return ({
+        type: actionTypes.ENABLE_BOARD
+    })
+}

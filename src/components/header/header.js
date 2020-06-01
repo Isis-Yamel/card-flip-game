@@ -4,11 +4,12 @@ import '../../css/header.scss';
 const Header = (props) => {
     return (
         <header className='header__layout'>
-            <section>
-                <h1 className='header__title'>Flip game</h1>
-                <button className='header__button' onClick={props.restart}>Restart</button>
+            <h1 className='header__title'>Flip game</h1>
+            <section className='header__menu'>
+                <button className='header__button'>Reset positions</button>
+                <button className='header__button'>New Game</button>
+                <button className='header__button'>Change player</button>
             </section>
-            <p className='header__layout--counter'>Tries: {props.counter}</p>
         </header>
     )
 }

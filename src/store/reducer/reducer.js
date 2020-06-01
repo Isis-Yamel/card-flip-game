@@ -5,19 +5,25 @@ import { cardImagesProps } from '../utils/imagesData';
 const initialState = {
     cards: cardFactory(cardImagesProps),
     currentFlipCards: 0,
+    disabledBoard: false,
 };
-console.log(cardFactory(cardImagesProps));
 
-const shuffle = (state) => {
+const enableBoard = (state) => {
     return {
         ...state,
-        cards: state.cards.sort(() => Math.random() - 0.5)
-    };
+        cards: state.cards.map( card => {
+            card.isFlipped = false;
+            return card;
+        }),
+        disabledBoard: false,
+    }
 }
 
 const isCardFlipped = (state, id) => {
-    state.currentFlipCards++
+    state.currentFlipCards++;
+
     checkCurrentCards(state);
+
     return {
         ...state,
         cards: state.cards.map( card => {
@@ -31,25 +37,8 @@ const isCardFlipped = (state, id) => {
 };
 
 const checkCurrentCards = (state) => {
-    console.log(state);
     if (state.currentFlipCards === 2) {
-        state.currentFlipCards = 0;
-        setTimeout(() => {
-            state.cards.map( card => {
-                card.isFlipped = false;
-                return card;
-            })
-        }, 1000);
-    }
-};
-
-const resetCards = (state) => {
-    return {
-        ...state.cards.map( card => {
-            card.isFlipped = false;
-
-            return card;
-        })
+        state.disabledBoard = !state.disabledBoard;
     }
 };
 
@@ -59,8 +48,8 @@ const reducer = (state = initialState, action) => {
             return state;
         case actionTypes.FLIP_CARD:
             return isCardFlipped({...state}, action.data);
-        case actionTypes.SHUFFLE_CARD:
-            return shuffle({...state});
+        case actionTypes.ENABLE_BOARD:
+            return enableBoard({...state})
         default:
             return state;
     };

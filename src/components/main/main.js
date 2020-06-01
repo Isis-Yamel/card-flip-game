@@ -1,27 +1,31 @@
 import React, { PureComponent, Fragment } from 'react';
 import ReactCardFlip from 'react-card-flip';
-import { flipCard } from '../../store/actions/actions';
-import { shuffleCards } from '../../store/actions/actions';
+import { flipCard, handleBoard } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 import '../../css/main.scss';
 
 class Main extends PureComponent {
 
-    componentDidMount() {
-        this.props.shuffleCards();
-    }
+    handleClickBoard(id) {
+        this.props.flipCard(id);
+
+        setTimeout(() => {
+            this.props.handleBoard();
+        }, 2000);
+    };
 
     renderCards = () => {
+        console.log(this.props.data, 'on checking this bitch' );
         return (
             <Fragment>
-                {this.props.data.map((item, index) => (
+                {this.props.data.cards.map((item, index) => (
                     <ReactCardFlip isFlipped={item.isFlipped} flipDirection="vertical" key={index}>
-                        <div>
-                            <button className=' card card__front' onClick={(id) => this.props.flipCard(item.id)}>
+                        <div >
+                            <button disabled={this.props.data.disabledBoard} className=' card card__front' onClick={(id) => this.handleClickBoard(item.id)}>
                             </button>
                         </div>
-                        <div>
-                            <button className=' card card__back' onClick={(id) => this.props.flipCard(item.id)}>
+                        <div >
+                            <button disabled={this.props.data.disabledBoard} className=' card card__back' onClick={(id) => this.handleClickBoard(item.id)}>
                                 <i className={item.image}></i>
                             </button>
                         </div>
@@ -43,14 +47,14 @@ class Main extends PureComponent {
 
 const mapStateProps = state => {
     return {
-        data: state.cards
+        data: state
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         flipCard: (id) => dispatch(flipCard(id)),
-        shuffleCards: () => dispatch(shuffleCards()),
+        handleBoard: () => dispatch(handleBoard()),
     }
 };
 
