@@ -1,12 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const GameRecord = () => {
+const GameRecord = props => {
     return (
         <div>
             <section>
                 <h2>Current Player</h2>
                 <p>Name: </p>
-                <p>Tries: </p>
+                <p>Tries: {props.data.tries} </p>
             </section>
             <section>
                 <h2>Position Table</h2>
@@ -14,6 +15,12 @@ const GameRecord = () => {
             </section>
         </div>
     )
-}
+};
 
-export default GameRecord;
+const mapStateProps = state => {
+    return {
+        data: state
+    };
+};
+
+export default connect(mapStateProps, null)(GameRecord);

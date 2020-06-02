@@ -14,7 +14,7 @@ export const cardFactory = (cardImagesProps = []) => {
         createdCards.push(new CardsGenerator(cardImagesProps[i]));
     };
 
-    // createdCards.sort(() => Math.random() - 0.5);
+    createdCards.sort(() => Math.random() - 0.5);
 
     return createdCards;
 };

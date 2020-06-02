@@ -25,3 +25,15 @@ export const storeCardMatch = (data) => {
         data
     })
 };
+
+export const newGame = () => {
+    return ({
+        type: actionTypes.NEW_GAME
+    })
+};
+
+export const resetPositions = () => {
+    return ({
+        type: actionTypes.RESET_POSITIONS
+    })
+};

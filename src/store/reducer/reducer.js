@@ -7,6 +7,31 @@ const initialState = {
     currentFlipCards: 0,
     disabledBoard: false,
     matchedCard: [],
+    tries: 0,
+};
+
+const isCardFlipped = (state, id) => {
+    state.currentFlipCards++;
+
+    checkCurrentCards(state);
+
+    return {
+        ...state,
+        cards: state.cards.map( card => {
+            if (card.id === id ) {
+                card.isFlipped = !card.isFlipped;
+            }
+            return card;
+        }),
+        currentFlipCards: state.currentFlipCards
+    };
+};
+
+const checkCurrentCards = (state) => {
+    if (state.currentFlipCards === 2) {
+        state.tries++;
+        state.disabledBoard = !state.disabledBoard;
+    }
 };
 
 const pushCard = (state, pushedCard) => {
@@ -49,33 +74,32 @@ const enableBoard = (state) => {
 
             return card;
         }),
-        disabledBoard: false,
         currentFlipCards: 0,
+        disabledBoard: false,
         matchedCard: []
     };
 };
 
-const isCardFlipped = (state, id) => {
-    state.currentFlipCards++;
-
-    checkCurrentCards(state);
-
+const newGame = (state) => {
     return {
         ...state,
-        cards: state.cards.map( card => {
-            if (card.id === id ) {
-                card.isFlipped = !card.isFlipped;
-            }
-            return card;
-        }),
-        currentFlipCards: state.currentFlipCards
+        cards: cardFactory(cardImagesProps),
+        currentFlipCards: 0,
+        disabledBoard: false,
+        matchedCard: [],
+        tries: 0,
     };
 };
 
-const checkCurrentCards = (state) => {
-    if (state.currentFlipCards === 2) {
-        state.disabledBoard = !state.disabledBoard;
-    }
+const resetPositions = (state) => {
+    return {
+        ...state,
+        cards: state.cards.map( card => {
+                card.isFlipped = false;
+                return card;
+            }),
+        tries: 0,
+    };
 };
 
 const reducer = (state = initialState, action) => {
@@ -88,6 +112,10 @@ const reducer = (state = initialState, action) => {
             return enableBoard({...state});
         case actionTypes.STORE_MATCH_CARD:
             return pushCard({...state}, action.data);
+        case actionTypes.NEW_GAME:
+            return newGame({...state});
+        case actionTypes.RESET_POSITIONS:
+            return resetPositions({...state});
         default:
             return state;
     };
