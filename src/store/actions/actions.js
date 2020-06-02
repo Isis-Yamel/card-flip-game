@@ -17,4 +17,11 @@ export const handleBoard = () => {
     return ({
         type: actionTypes.ENABLE_BOARD
     })
-}
+};
+
+export const storeCardMatch = (data) => {
+    return ({
+        type: actionTypes.STORE_MATCH_CARD,
+        data
+    })
+};

@@ -1,31 +1,33 @@
 import React, { PureComponent, Fragment } from 'react';
 import ReactCardFlip from 'react-card-flip';
-import { flipCard, handleBoard } from '../../store/actions/actions';
+import { flipCard, handleBoard, storeCardMatch } from '../../store/actions/actions';
 import { connect } from 'react-redux';
 import '../../css/main.scss';
 
 class Main extends PureComponent {
 
-    handleClickBoard(id) {
+    handleClickBoard(id, index, image) {
         this.props.flipCard(id);
+        this.props.storeCardMatch({index, image});
 
-        setTimeout(() => {
-            this.props.handleBoard();
-        }, 2000);
+        if (this.props.data.currentFlipCards === 1) {
+            setTimeout(() => {
+                this.props.handleBoard();
+            }, 1500);
+        }
     };
 
     renderCards = () => {
-        console.log(this.props.data, 'on checking this bitch' );
         return (
             <Fragment>
                 {this.props.data.cards.map((item, index) => (
                     <ReactCardFlip isFlipped={item.isFlipped} flipDirection="vertical" key={index}>
-                        <div >
-                            <button disabled={this.props.data.disabledBoard} className=' card card__front' onClick={(id) => this.handleClickBoard(item.id)}>
+                        <div>
+                            <button disabled={this.props.data.disabledBoard} className=' card card__front' onClick={(id, image) => this.handleClickBoard(item.id, index, item.image)}>
                             </button>
                         </div>
                         <div >
-                            <button disabled={this.props.data.disabledBoard} className=' card card__back' onClick={(id) => this.handleClickBoard(item.id)}>
+                            <button disabled={this.props.data.disabledBoard} className=' card card__back' onClick={(id, image) => this.handleClickBoard(item.id, index, item.image)}>
                                 <i className={item.image}></i>
                             </button>
                         </div>
@@ -37,9 +39,9 @@ class Main extends PureComponent {
 
     render () {
         return (
-            <main className='main__layout'>
+            <Fragment>
                 {this.renderCards()}
-            </main>
+            </Fragment>
         );
 
     }
@@ -55,6 +57,7 @@ const mapDispatchToProps = dispatch => {
     return {
         flipCard: (id) => dispatch(flipCard(id)),
         handleBoard: () => dispatch(handleBoard()),
+        storeCardMatch: (index, image) => dispatch(storeCardMatch(index, image)),
     }
 };
 

@@ -1,6 +1,7 @@
 .main__layout {
     align-items: center;
     display: grid;
+    grid-area: main;
     grid-template-columns: repeat(4, 1fr);
     height: 70%;
     justify-items: center;

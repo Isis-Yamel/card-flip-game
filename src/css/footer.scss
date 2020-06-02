@@ -1,0 +1,9 @@
+/*_____footer_____*/
+
+.footer {
+    grid-area: footer;
+    &__style {
+        font-style: italic;
+        text-align: center;
+    }
+}
