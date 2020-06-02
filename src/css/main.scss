@@ -1,18 +1,22 @@
-.main__layout {
-    align-items: center;
-    display: grid;
-    grid-area: main;
-    grid-template-columns: repeat(4, 1fr);
-    height: 70%;
-    justify-items: center;
-    margin: 2% auto;
-    width: 60%;
+.main {
+    &__layout {
+        display: grid;
+        grid-area: main;
+        grid-template-columns: 1fr 0.5fr;
+        margin: 10% auto;
+        width: 100%;
+    }
+
+    &__cardlayout {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 10px;
+        margin: 0 2%;
+    }
 }
 
 
 .card {
-    border: none;
-    border-radius: 4px;
     height: 120px;
     width: 120px;
 
@@ -26,4 +30,28 @@
 
 .fas {
     font-size: 4em;
+}
+
+
+@media (min-width: 300px) {
+    .card {
+        border: none;
+        border-radius: 4px;
+        height: 50px;
+        width: 50px;
+    }
+}
+
+@media (min-width: 768px) {
+    .card {
+        height: 80px;
+        width: 80px;
+    }
+}
+
+@media (min-width: 1080px) {
+    .card {
+        height: 120px;
+        width: 120px;
+    }
 }

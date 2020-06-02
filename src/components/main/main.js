@@ -39,9 +39,9 @@ class Main extends PureComponent {
 
     render () {
         return (
-            <Fragment>
+            <div className='main__cardlayout'>
                 {this.renderCards()}
-            </Fragment>
+            </div>
         );
 
     }

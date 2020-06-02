@@ -2,7 +2,7 @@
     &__layout {
         grid-area: header;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 0.5fr 1fr;
     }
 
     &--counter {
@@ -29,5 +29,38 @@
 
     &__title {
         font-size: 3em;
+    }
+}
+
+
+@media (min-width: 300px) {
+    .header {
+        &__layout {
+            margin: 20px 0;
+        }
+
+        &__title {
+            font-size: 1em;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .header {
+        &__layout {
+            margin: 0;
+        }
+
+        &__title {
+            font-size: 2em;
+        }
+    }
+}
+
+@media (min-width: 1080px) {
+    .header {
+        &__title {
+            font-size: 3em;
+        }
     }
 }
