@@ -1,20 +1,48 @@
-import React from 'react';
+import React, { Component } from 'react';
+import CurrentPlayer from './currentplayer';
+import ChangePlayer from './changePlayer';
 import { connect } from 'react-redux';
+import { newPlayer } from '../../store/actions/actions';
+import '../../css/main.scss';
 
-const GameRecord = props => {
-    return (
-        <div>
-            <section>
-                <h2>Current Player</h2>
-                <p>Name: </p>
-                <p>Tries: {props.data.tries} </p>
-            </section>
-            <section>
-                <h2>Position Table</h2>
-                <p>Player -- tries</p>
-            </section>
-        </div>
-    )
+class GameRecord extends Component {
+
+    state = {
+        changePlayer: false,
+    };
+
+    changeScreenPlayer = () => {
+        let doesChange = this.state.changePlayer;
+        this.setState ({
+            changePlayer: !doesChange
+        });
+    };
+
+    changePlayer = () => {
+        if (this.state.changePlayer === true) {
+            return <CurrentPlayer
+                currentPlayer={this.props.data.players}
+                tries= {this.props.data.tries}
+            />
+        } else {
+            return <ChangePlayer
+                change={this.changeScreenPlayer}
+                player={this.props.newPlayer}
+                tries= {this.props.data.tries}/>
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                {this.changePlayer()}
+                <section className='record--space record'>
+                    <h2 className='record__title'>Position Table</h2>
+                    <p>Player -- tries</p>
+                </section>
+            </div>
+        )
+    };
 };
 
 const mapStateProps = state => {
@@ -23,4 +51,10 @@ const mapStateProps = state => {
     };
 };
 
-export default connect(mapStateProps, null)(GameRecord);
+const mapDispatchToProps = dispatch => {
+    return {
+        newPlayer: (name, tries) => dispatch(newPlayer(name, tries)),
+    }
+};
+
+export default connect(mapStateProps, mapDispatchToProps)(GameRecord);

@@ -20,7 +20,7 @@ const Header = (props) => {
             </section>
         </header>
     )
-}
+};
 
 const mapDispatchToProps = dispatch => {
     return {

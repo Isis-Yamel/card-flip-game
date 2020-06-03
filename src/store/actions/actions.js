@@ -37,3 +37,10 @@ export const resetPositions = () => {
         type: actionTypes.RESET_POSITIONS
     })
 };
+
+export const newPlayer = (data) => {
+    return ({
+        type: actionTypes.NEW_PLAYER,
+        data
+    })
+};

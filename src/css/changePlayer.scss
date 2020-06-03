@@ -1,0 +1,12 @@
+.record {
+    &__playerRecord {
+        align-items: center;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+    }
+
+    &__button {
+        margin: 20px;
+    }
+}

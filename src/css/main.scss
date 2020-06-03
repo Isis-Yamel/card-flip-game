@@ -15,6 +15,20 @@
     }
 }
 
+.record {
+    border: 2px solid white;
+    height: 30%;
+    padding: 14px;
+    width: 100%;
+
+    &--space {
+        margin: 20px 0;
+    }
+
+    &__title {
+        text-align: center;
+    }
+}
 
 .card {
     height: 120px;

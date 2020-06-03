@@ -7,6 +7,7 @@ const initialState = {
     currentFlipCards: 0,
     disabledBoard: false,
     matchedCard: [],
+    players: [],
     tries: 0,
 };
 
@@ -45,6 +46,17 @@ const pushCard = (state, pushedCard) => {
     return {
         ...state,
         matchedCard: matchMatch
+    };
+};
+
+const newPlayer = (state, player) => {
+    let createPlayer = [...state.players];
+
+    createPlayer.push(player);
+
+    return {
+        ...state,
+        players: createPlayer
     };
 };
 
@@ -116,6 +128,8 @@ const reducer = (state = initialState, action) => {
             return newGame({...state});
         case actionTypes.RESET_POSITIONS:
             return resetPositions({...state});
+        case actionTypes.NEW_PLAYER:
+            return newPlayer({...state}, action.data);
         default:
             return state;
     };
